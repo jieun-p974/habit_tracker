@@ -3,7 +3,7 @@ import Calendar from "../components/Calendar";
 import {db} from "../fb-config";
 import { doc, deleteDoc,setDoc,updateDoc } from "firebase/firestore";
 
-const Details = ({uid}) => {
+const Details = () =>{
   const history = useHistory();
   const {state:habit} = useLocation();
 
