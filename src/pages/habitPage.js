@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useCollection from "../hooks/useCollection";
 import Habit from "../components/Habit";
 import { db } from "../fb-config";
+import { collection,addDoc } from "firebase/firestore";
 
 const habitPage = ({ user, modal, setModal }) => {
   const [completed, setCompleted] = useState(null);
@@ -33,5 +34,37 @@ const habitPage = ({ user, modal, setModal }) => {
   const addHabit = (e) => {
     e.preventDefault();
     setModal(false);
+    const habitTitle = e.target.element.habitTitle.value;
+    await addDoc(collection(db,`users/${user.uid}/habits`),{
+      name: habitName,
+      completedOn: [],
+    });
   };
+
+  return habits ? (
+    <>
+
+    </>
+  ):(<Loader />);
 };
+
+const Banner = ({completed,total})=>{
+  if(completed === 0){
+    // 하나도 안함
+    return (<></>);
+  }else if(completed===total){
+    // 전부 완료
+    return(<></>);
+  }
+  return (
+    // 
+    <></>
+  );
+};
+
+const Loader=()=>{
+  return(
+    <>
+    </>
+  )
+}
